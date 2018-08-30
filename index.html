@@ -42,5 +42,16 @@
 </main>
 
 <script src="main.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelector('#slugify').addEventListener('click', function (e) {
+            e.preventDefault();
+            var s = new Slugify();
+            var input = document.querySelector('#strings-input');
+            var output = document.querySelector('#strings-output');
+            output.value = s.slugify(input.value);
+        });
+    });
+</script>
 </body>
 </html>
