@@ -69,13 +69,3 @@ Slugify.prototype.compileStrings = function (strings) {
 
     return output.replace(/[\n\r]+$/g, '');
 };
-
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelector('#slugify').addEventListener('click', function (e) {
-        e.preventDefault();
-        var s = new Slugify();
-        var input = document.querySelector('#strings-input');
-        var output = document.querySelector('#strings-output');
-        output.value = s.slugify(input.value);
-    });
-});
