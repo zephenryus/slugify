@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bulk Slugify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <style>
+        #form-wrapper > h1,
+        #form-wrapper > div {
+            margin-top:    1.5rem;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <section class="section">
+        <div class="container">
+            <div class="content">
+                <div class="columns">
+                    <div class="column"></div>
+                    <div id="form-wrapper" class="column is-10">
+                        <h1>Bulk Slugify</h1>
+
+                        <div class="control">
+                    <textarea class="textarea" name="strings-input" id="strings-input" cols="30" rows="10"
+                              placeholder="Strings to slugify..."></textarea>
+                        </div>
+
+                        <div><a href="#" class="button is-primary is-fullwidth">Slugify</a></div>
+
+                        <div class="control is-loading">
+                            <textarea class="textarea" name="strings-output" id="strings-output" cols="30" rows="10"
+                                      placeholder="Output..."></textarea>
+                        </div>
+                    </div>
+                    <div class="column"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+</body>
+</html>
