@@ -1,13 +1,16 @@
 'use strict';
 
-function Slugify(strings) {
+function Slugify(strings = null) {
     this.symbol = 'àáäâãåèéëêìíïîòóöôùúüûñçßÿœæŕśńṕẃǵǹḿǘẍźḧ·/_,:;';
     this.symbolReplacement = 'aaaaaaeeeeiiiioooouuuuncsyoarsnpwgnmuxzh------';
     this.symbolPattern = new RegExp(this.symbol.split('').join('|'), 'g');
 
-    if (strings) {
+    if (typeof strings === 'string') {
+        console.log('returning string');
         return this.slugify(strings);
     }
+
+    return this;
 }
 
 Slugify.prototype.slugify = function (strings) {
@@ -32,7 +35,6 @@ Slugify.prototype.compileSlugs = function (strings) {
             var string = strings[index];
 
             if (typeof string === 'string') {
-                console.log(string);
                 string = string
                     .toString()
                     .trim()
@@ -49,22 +51,31 @@ Slugify.prototype.compileSlugs = function (strings) {
                     .replace(/--+/g, '-')
                     // Trim — from start of text .replace(/-+$/, '') // Trim — from end of text
                     .replace(/^-+/, '');
-                console.log(string);
             }
 
             strings[index] = string;
         }
     }
 
-    return this.encodeStrings(strings);
+    return this.compileStrings(strings);
 };
 
+Slugify.prototype.compileStrings = function (strings) {
+    var output = '';
 
+    for (var index in strings) {
+        output += strings[index] + '\n';
+    }
+
+    return output.replace(/[\n\r]+$/g, '');
+};
 
 document.addEventListener('DOMContentLoaded', function () {
-    document.querySelector('#slugify').addEventListener('click', function () {
+    document.querySelector('#slugify').addEventListener('click', function (e) {
+        e.preventDefault();
+        var s = new Slugify();
         var input = document.querySelector('#strings-input');
         var output = document.querySelector('#strings-output');
-        output.value = new Slugify(input.value);
+        output.value = s.slugify(input.value);
     });
 });
